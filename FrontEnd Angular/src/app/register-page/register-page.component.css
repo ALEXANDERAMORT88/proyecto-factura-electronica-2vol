@@ -1,0 +1,133 @@
+
+.info_contacto {
+    height: 50px;
+    background-color: var(--color-primary);
+    display: grid;
+    justify-content: end;
+    align-items: center;
+    color: aliceblue;
+}
+
+.contenido_contacto {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    padding-right: 15px;
+} 
+
+.selector {
+    width: 130px;
+    background-color: transparent;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 25px;
+}
+
+.boton_clientes{
+    width: 130px;
+}
+
+.img_logo {
+    height: 40px;
+}
+
+.info_navbar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 25px;
+}
+
+.info_navbar_funcionalidades{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.btn_inicio,
+.planes,
+.producto,
+.software {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    width: 132px;
+    height: 35px;
+    text-align: center;
+    padding: 7px 0;
+    font-weight:bold ;
+    cursor: pointer;
+}
+
+.inf_sesion{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: end;
+    justify-items: end;
+    align-items: center;
+}
+
+.contendor_creando_cuenta {
+    display: grid;
+    grid-template-columns: 37.5rem 37.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.boton_regresar {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.flecha {
+    width: 1rem;
+    height: auto;
+}
+
+.contenedor_info_cuenta {
+    text-align: center;
+    margin-bottom: 1.1rem;
+}
+
+.contenedor_info_compra {
+    display: grid;
+    grid-template-columns: clamp(18rem ,18vw, 28rem) clamp(18rem ,18vw, 28rem);
+    justify-content: start;
+    gap: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor_info_compra {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor_tipoDocuemnto {
+    display: flex;
+    flex-direction: column;    
+}
+
+/* Input con error, esta la creamos gracias a [ngClass] */
+.input-error {
+  border: 2px solid #e63946; /* rojo elegante */
+  /* background-color: #ffe6e6; */
+  outline: none;
+}
+
+/* Mensaje de error */
+.error {
+  color: #e63946;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+

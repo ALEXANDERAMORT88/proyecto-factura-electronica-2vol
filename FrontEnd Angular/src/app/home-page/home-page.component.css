@@ -1,0 +1,162 @@
+/* Damos estilos a la barra de navegación superior*/
+.info_contacto {
+    height: 50px;
+    background-color: var(--color-primary); /*Usos de la variable global*/
+    display: grid;
+    justify-content: end;
+    align-items: center;
+    color: aliceblue;
+}
+/* Contenedor que agrupa los elementos de contacto dentro de la barra*/
+.contenido_contacto {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    padding-right: 15px;
+} 
+/* Estilos al menú desplegable de la selección de país */
+.selector {
+    width: 130px;
+    background-color: transparent;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 25px;
+}
+
+.boton_clientes{
+    width: 130px;
+}
+
+.img_logo {
+    height: 40px;
+}
+
+.info_navbar {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 1.2rem 1rem;
+}
+
+.info_navbar_funcionalidades{
+    display: grid;
+    grid-template-columns: repeat(5, 11rem);
+    justify-items: center;
+    align-items: center;
+}
+
+.inf_sesion{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: end;
+    justify-items: end;
+    align-items: center;
+}
+/* Estilos a los botones de información */
+.btn_inicio,
+.btn_planes,
+.btn_producto,
+.btn_software {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    width: 9rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.3rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    font-weight:bold ;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+
+.btn_inicio:hover,
+.btn_planes:hover,
+.btn_producto:hover,
+.btn_software:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Menú oculto */
+.dropdown_menu {
+    /* display: none; */
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: var(--color-primary);
+    border-radius: 0.3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 9rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.dropdown_menu li {
+    display: block;
+    padding: 0.6rem;
+    color: var(--color-secondary);
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.dropdown_menu li:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.img_fondo_asesoria{
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    background-image: url('../../assets/img-home-page/img\ fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    align-items: center;
+    justify-items: end;
+    padding: 0 100px 0 0;
+}
+
+/* Estilos al formulario de solicitud de información */
+.formulario_asesoria{
+    width: 350px;
+    height: 350px;
+    background-color: #fafbfd;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    display: grid;
+    justify-items: center;   
+}
+
+h2{
+    height: 55px;
+    padding: 55px 0 0 0;
+}
+
+.formulario{
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+}
+
+.formulario input, select{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    padding: 0 0 0 16px;
+}
+
+
