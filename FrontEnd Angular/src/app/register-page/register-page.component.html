@@ -130,6 +130,16 @@
                             El nombre es obligatorio
                         </div>
                     </div>
+                    
+                    <!-- Celular -->
+                    <div>
+                        <input class="input_celular" type="text" formControlName="celular"
+                            [ngClass]="{'input-error': f['celular'].invalid && f['celular'].touched}"
+                            placeholder="Celular">
+                        <div *ngIf="f['celular'].touched && f['celular'].invalid" class="error">
+                            El celular es obligatorio
+                        </div>
+                    </div>
 
                     <!-- Numero de Documento  -->
                     <div>
@@ -167,7 +177,8 @@
                             class="error">
                             El correo no es válido
                         </div>
-                        <div *ngIf="f['confirmacionEmail'].touched && f['confirmacionEmail'].hasError('emailMismatch')" class="error">
+                        <div *ngIf="f['confirmacionEmail'].touched && f['confirmacionEmail'].hasError('emailMismatch')"
+                            class="error">
                             Los correos no coinciden
                         </div>
                     </div>
@@ -175,8 +186,8 @@
                     <!-- Password -->
                     <div>
                         <input type="password" formControlName="passwordIngreso"
-                        [ngClass]="{'input-error': f['passwordIngreso']. invalid && f['passwordIngreso'].touched}"
-                         placeholder="Contraseña">
+                            [ngClass]="{'input-error': f['passwordIngreso']. invalid && f['passwordIngreso'].touched}"
+                            placeholder="Contraseña">
                         <div *ngIf="f['passwordIngreso'].touched && f['passwordIngreso'].hasError('required')"
                             class="error">
                             La contraseña es obligatoria
@@ -190,7 +201,7 @@
                     <!-- Confirmación Password -->
                     <div>
                         <input type="password" formControlName="confirmacionPassword"
-                        [ngClass]="{'input-error': f['confirmacionPassword'].invalid && f['confirmacionPassword'].touched}"
+                            [ngClass]="{'input-error': f['confirmacionPassword'].invalid && f['confirmacionPassword'].touched}"
                             placeholder="Confirmar contraseña">
                         <div *ngIf="f['confirmacionPassword'].touched && f['confirmacionPassword'].hasError('required')"
                             class="error">

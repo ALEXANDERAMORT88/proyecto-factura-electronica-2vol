@@ -2,13 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch servidor.js"
+    "dev": "ts-node-dev --respawn --transpile-only src/servidor.ts",
+    "start": "node --watch dist/servidor.js",
+    "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "",  
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -19,6 +20,11 @@
     "zod": "4.1.8"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.4.0",
+    "nodemon": "^3.1.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
   }
 }

@@ -55,6 +55,7 @@ export class RegisterPageComponent {
       {
         tipoDocumento: ['', Validators.required],
         nombre: ['', Validators.required],
+        celular: ['', Validators.required],
         numeroDocuemnto: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         confirmacionEmail: ['', [Validators.required, Validators.email]],
@@ -119,6 +120,8 @@ export class RegisterPageComponent {
     // si todo es valido, aquí creamos la lógica de envio de datos.
     console.log('Formulario válido, datos guardados: ', this.registerForm.value);
 
-    this.router.navigate(['/home']);
+      
+
+    this.router.navigate(['/panel-gestion']);
   }
 }
