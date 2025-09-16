@@ -14,7 +14,7 @@ app.disable('x-powored-by'); // Desabilita esta cabecera, por temas de seguridad
 app.use(express.json()) // Permite leer datos enviados en formato JSON desde el frontend.
 app.use(cors()); // Permite solicitudes CORS desde cualquier origen (útil en desarrollo).
 
-app.use('/empresa', empresaRouters);
+app.use('/empresas', empresaRouters);
 
 const PORT: number = Number(process.env.PORT) || 54321; 
 

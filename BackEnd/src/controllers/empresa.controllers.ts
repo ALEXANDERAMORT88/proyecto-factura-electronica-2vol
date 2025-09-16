@@ -1,6 +1,7 @@
 import ZodEmpresaSchema from "../schema/empresas.schema";
 import IEmpresa from "../model/empresa.models";
 import { Request, Response } from "express";
+import { success } from "zod";
 
 export const crearEmpresa = async (req: Request, res: Response) => {
   try {
@@ -35,3 +36,29 @@ export const crearEmpresa = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Error interno del servidor 📟"})
   }
 };
+
+export const consultaNombreEmpresa = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const empresa = await IEmpresa.findById(id);
+
+    if (!empresa) {
+      return res
+      .status(400)
+      .json({ 
+        success: false,
+        message: "Empresa no encontrada ❌"});
+    }
+
+    res.status(200)
+    .json(empresa);
+  } catch (error) {
+    console.error("Error en la colsulata del nombre de la empresa ❌", error);
+    res.status(500)
+    .json({
+      success: false,
+      message: "Error en el servidor"
+    });    
+  }
+}

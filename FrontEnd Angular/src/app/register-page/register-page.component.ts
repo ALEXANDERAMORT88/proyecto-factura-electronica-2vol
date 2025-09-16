@@ -1,4 +1,6 @@
 import { Component, signal } from '@angular/core';
+import { EmpresaService } from '../services/empresa.service';
+
 import {
   AbstractControl,
   FormBuilder,
@@ -8,6 +10,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -50,7 +53,7 @@ export class RegisterPageComponent {
   registerForm!: FormGroup;
   submitted = false; // Controlamos el estado del envío del formulario.
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: EmpresaService) {
     this.registerForm = this.fb.group(
       {
         tipoDocumento: ['', Validators.required],
@@ -85,7 +88,7 @@ export class RegisterPageComponent {
 
   // Valildar que las contraseñas coincidad 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
-    const password = group.get('password')?.value;
+    const password = group.get('passwordIngreso')?.value;
     const confirmarPassword = group.get('confirmarPassword')?.valid
 
     return password && confirmarPassword !== confirmarPassword
@@ -115,13 +118,19 @@ export class RegisterPageComponent {
       return;
     }
 
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (res)=> {
+        console.log("Registro exitoso: ", res);
+        this.router.navigate(['/panel-gestion', res.empresa._id]);
+      },
+      error: (err)=> {
+        console.error("Error en el registro", err);
+      }
+    })
+
     // Guardamos de momento los datos en LocalStorage
     localStorage.setItem('empresaData', JSON.stringify(this.registerForm.value));
     // si todo es valido, aquí creamos la lógica de envio de datos.
     console.log('Formulario válido, datos guardados: ', this.registerForm.value);
-
-      
-
-    this.router.navigate(['/panel-gestion']);
   }
 }

@@ -54,8 +54,8 @@
         <!-- Fin contenedor de componentes sidebar -->
 
         <!-- Contenedor de Header -->
-        <section class="info_clilente_empresa">
-            <h2 class="nombre_usuario">Nombre de la empresa</h2>
+        <section class="info_clilente_empresa" *ngIf="empresa">
+            <h2 class="nombre_usuario">{{ empresa.nombre }}</h2>
             <h3>Configuració</h3>
         </section>
         <!-- Contenedor para la creacion de los diferentes documentos   -->
@@ -67,43 +67,43 @@
                 <div class="contenedor_opciones">
 
                     <div class="boton_crear" id="link_vista_registro">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Crear una factura</span>
                     </div>
                     <div class="boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Registra eventos en factura electrónica de proveedores</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Crea un Cocumento soporte</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="" >
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="" >
                         <span>Registra una Compra o Gasto</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="" />
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="" />
                         <span>Crea un Comprobate Cantable</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         Crea un Recibo de Caja
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Crea un Recibo de Pago</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Crea un Tercero</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>Crea un Producto o Servicio</span>
                     </div>
                     <div class=" boton_crear">
-                        <img class="img_crear" src="../../assets/img-panel-page/Img crear.png" alt="">
+                        <img class="img_crear" src="assets/img-panel-page/Img crear.png" alt="">
                         <span>POS Web</span>
                     </div>
 
