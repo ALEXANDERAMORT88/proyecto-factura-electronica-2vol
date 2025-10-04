@@ -59,7 +59,7 @@ export class RegisterPageComponent {
         tipoDocumento: ['', Validators.required],
         nombre: ['', Validators.required],
         celular: ['', Validators.required],
-        numeroDocuemnto: ['', Validators.required],
+        numeroDocumento: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         confirmacionEmail: ['', [Validators.required, Validators.email]],
         passwordIngreso: ['', [Validators.required, Validators.minLength(6)]],
@@ -119,9 +119,10 @@ export class RegisterPageComponent {
     }
 
     this.authService.register(this.registerForm.value).subscribe({
-      next: (res)=> {
+      next: (res: any)=> {
         console.log("Registro exitoso: ", res);
-        this.router.navigate(['/panel-gestion', res.empresa._id]);
+        const id = res.empresa?._id || res._id; // se realiza el cambio para que lo pueda soportar Node o PHP.
+        this.router.navigate(['/panel-gestion', id]);
       },
       error: (err)=> {
         console.error("Error en el registro", err);
