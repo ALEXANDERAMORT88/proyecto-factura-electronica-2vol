@@ -123,14 +123,17 @@
 
                     <!-- Nombre -->
                     <div>
-                        <input class="input_nombre" type="text" formControlName="nombre"
-                            [ngClass]="{'input-error': f['nombre'].invalid && f['nombre'].touched}"
-                            placeholder="Nombre">
+                        <div class="estilo_input">
+                            <input class="input_nombre" type="text" formControlName="nombre"
+                                [ngClass]="{'input-error': f['nombre'].invalid && f['nombre'].touched}"
+                                placeholder="Nombre">
+                            <label class="input_label">Nombre</label>
+                        </div>
                         <div *ngIf="f['nombre'].touched && f['nombre'].invalid" class="error">
                             El nombre es obligatorio
                         </div>
                     </div>
-                    
+
                     <!-- Celular -->
                     <div>
                         <input class="input_celular" type="text" formControlName="celular"
@@ -143,10 +146,10 @@
 
                     <!-- Numero de Documento  -->
                     <div>
-                        <input type="text" formControlName="numeroDocuemnto"
-                            [ngClass]="{'input-error':f['numeroDocuemnto'].invalid && f['numeroDocuemnto'].touched}"
+                        <input type="text" formControlName="numeroDocumento"
+                            [ngClass]="{'input-error':f['numeroDocumento'].invalid && f['numeroDocumento'].touched}"
                             placeholder="Numero de Docuemnto">
-                        <div *ngIf="f['numeroDocuemnto'].touched && f['numeroDocuemnto'].invalid" class="error">
+                        <div *ngIf="f['numeroDocumento'].touched && f['numeroDocumento'].invalid" class="error">
                             El numero de documento es obligatorio
                         </div>
                     </div>
