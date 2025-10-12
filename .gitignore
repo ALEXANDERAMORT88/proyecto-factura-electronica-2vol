@@ -1,3 +1,5 @@
 node_modules
 .env
 cls
+# Ignorar dependencias PHP
+BackEnd PHP/vendor/

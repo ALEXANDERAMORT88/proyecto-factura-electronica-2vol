@@ -1,0 +1,19 @@
+{
+    "name": "alex8/taller-php",
+    "description": "Taller PHP con MongoDB",
+    "require": {
+        "mongodb/mongodb": "^2.1",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alex8\\TallerPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ALEXANDERAMORT88",
+            "email": "alex.88m.aa@gmail.com"
+        }
+    ]
+}
