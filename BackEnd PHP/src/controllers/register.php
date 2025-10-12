@@ -45,7 +45,7 @@ class AuthController
 
         // realizamos el llamado y esperamos que el modelo valide las credenciales y nos devuelva un resultado. (por ejemplo: éxito/fallo, token, datos del usuario).
         $result = $this->userModel->login($email, $passwordIngreso);
-        // Nuevamente usamos echo y json_encode para responder. 
+        // Nuevamente usamos echo y json_encode para responder.
         echo json_encode($result);
     }
 }
