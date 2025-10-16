@@ -1,51 +1,111 @@
 <?php
 
-// Servicio para registrar un usuario en MongoDB
+// Inicilmente lo que hacemos es importar los archivos que contienen la clase User. 
+require_once __DIR__ . '/models/User.php';
 
-// Con require_once incluimos el archivo User.php ubicado en la carpeta models.
-// __DIR__ obtiene la ruta del directorio actual y garantiza que el archivo se busque correctamente sin importar desde dónde se ejecute el script.
-// Esto permite acceder a las clases o funciones del modelo de usuario necesarias para registrar o gestionar empresas.
-require_once __DIR__ . '/../models/User.php';
+// Vamos a indicarle al navegador que vamos  a tener respuestas en tipo JSON.
+header('Content-Type: application/json; charset=utf-8');
+// Creamoas una instancia de la calse User, para usar sus metodos. 
+$userModel = new User();
 
-
-// Declaramos una clase.
-class AuthController
+// Función para crear una empresa el cual rescibe como parametro $data.
+function crearEmpresa($data)
 {
-    // Se define una propiedad que solo podremos usar dentro de la clase, con el propósito de guardar una instancia del modelo User. 
-    private $userModel;
-     // El constructor sera ejecutado cuando se crea new AuthController.
-    public function __construct()
-    {
-        // Se crea una nueva instancia de la clase User y se asigna a la propiedad $this->userModel
-        $this->userModel = new User();
-    }
+    // Nos permite usar esta variable 
+    global $userModel;
 
-    // Es el metodo publico que espera recibir un array asociativo $request que contiene los capos del formulario. 
-    public function register($request)
-    {
-        // Se crea la variable que contiene un array y con el uso del operador ?? podemos validar si tiene datos o no, y poder registrar el usuario. 
-        $data = [
-            "tipoDocumento" => $request["tipoDocumento"] ?? "",
-            "nombre" => $request["nombre"] ?? "",
-            "celular" => $request["celular"] ?? "",
-            "numeroDocumento" => $request["numeroDocumento"] ?? "",
-            "email" => $request["email"] ?? "",
-            "passwordIngreso" => $request["passwordIngreso"] ?? ""
-        ];
-        // Llama al merodo register del modelo User pasando $data. Espera que método del modelo retorne algún resultado. 
-        $result = $this->userModel->register($data);
-        // echo nos ayuda a imprimir la respuesta HTTP en consola y json_encode lo que hace es convertir esa respuesta en JSON. 
-        echo json_encode($result);
+
+    // Lo que haremos a continuación dentro den try es ejecutar si hay un error. 
+    try {
+        // Validaciones básicas, para validar si los campos vienen vacios 
+        if (empty($data['email']) || empty($data['passwordIngreso']) || empty($data['nombre'])) {
+            http_response_code(400);
+
+            // Devolvemos un JSON en consola
+            echo json_encode([
+                'message' => 'Error en la validación de datos',
+                'errores' => 'Los campos nombre, email y contraseña son obligatorios.'
+            ]);
+            return;
+        }
+
+        // Registrar empresa, lo que hace es llamar al metodo User para guardar la empresa en DB. 
+        $result = $userModel->register($data);
+
+        http_response_code(201);
+        echo json_encode([
+            'message' => 'Empresa creada exitosamente ✅',
+            'empresa' => $result
+        ]);
+        // Y dentro del catch campturamos el error y asi evitamos que el programa se caiga. 
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'message' => 'Error interno del servidor 📟',
+            'error' => $e->getMessage()
+        ]);
     }
-    // Es el metodo publico que va a extraer email y passwordIngreso del $request y tambien usamos el operador ??.
-    public function login($request)
-    {
+}
+
+// Función para iniciar sesión
+function login($request)
+{
+    global $userModel;
+
+    try {
+        // Creamos una variable la cual contenga request y con el operdor ?? validamos si no exite use por defecto "".
         $email = $request["email"] ?? "";
         $passwordIngreso = $request["passwordIngreso"] ?? "";
 
-        // realizamos el llamado y esperamos que el modelo valide las credenciales y nos devuelva un resultado. (por ejemplo: éxito/fallo, token, datos del usuario).
-        $result = $this->userModel->login($email, $passwordIngreso);
-        // Nuevamente usamos echo y json_encode para responder.
-        echo json_encode($result);
+        if (empty($email) || empty($passwordIngreso)) {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Debe ingresar el correo electrónico y la contraseña'
+            ]);
+            return;
+        }
+        // llamamos al metodo Login para validar las credenciales contra la DB. 
+        $result = $userModel->login($email, $passwordIngreso);
+
+        //Hacemos la validacion si no es null o false continuamos con el registro de inicio de sesión. 
+        if ($result) {
+            http_response_code(200);
+            echo json_encode([
+                'message' => 'Inicio de sesión exitoso ✅',
+                'usuario' => $result
+            ]);
+        } else {
+            http_response_code(401);
+            echo json_encode([
+                'message' => 'Credenciales inválidas ❌'
+            ]);
+        }
+
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'message' => 'Error interno del servidor 📟',
+            'error' => $e->getMessage()
+        ]);
     }
+}
+
+// Ruteo simple según el método HTTP
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method === 'POST') {
+    // Verificar si el login viene por ?action=login
+    if (isset($_GET['action']) && $_GET['action'] === 'login') {
+        // Leemos el cuerpo POST, el JSON que enviamos desde Angular. 
+        $input = json_decode(file_get_contents('php://input'), true);
+        login($input);
+    } else {
+        $input = json_decode(file_get_contents('php://input'), true);
+        crearEmpresa($input);
+    }
+} else {
+    http_response_code(405);
+    echo json_encode([
+        'message' => 'Método no permitido'
+    ]);
 }

@@ -17,40 +17,40 @@ export interface IEmpresa{
 })
 
 // Para Angular 
-// export class EmpresaService {
-
-//   private apiUrl = 'http://localhost:5100/empresas';
-
-//   constructor(private http: HttpClient) {}
-
-//   register(empresaData: any):Observable<any> {
-//     return this.http.post(this.apiUrl, empresaData)
-//   }
-
-//     obtenerEmpresa(id: string):Observable<IEmpresa> {
-//       return this.http.get<IEmpresa>(`${this.apiUrl}/${id}`)
-//     }
-// }
-
-// Para PHP
 export class EmpresaService {
 
-  private apiUrl = 'http://localhost:5100'; // base URL de la API en PHP
+  private apiUrl = 'http://localhost:5100/empresas';
 
   constructor(private http: HttpClient) {}
 
-  // Registro de empresa (usuario)
-  register(empresaData: IEmpresa): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, empresaData);
+  register(empresaData: any):Observable<any> {
+    return this.http.post(this.apiUrl, empresaData)
   }
 
-  // Login de empresa (usuario)
-  login(credentials: { email: string; passwordIngreso: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
-  }
-
-  // Obtener empresa por ID (si lo necesitas más adelante)
-  obtenerEmpresa(id: string): Observable<IEmpresa> {
-    return this.http.get<IEmpresa>(`${this.apiUrl}/empresas/${id}`);
-  }
+    obtenerEmpresa(id: string):Observable<IEmpresa> {
+      return this.http.get<IEmpresa>(`${this.apiUrl}/${id}`)
+    }
 }
+
+// Para PHP
+// export class EmpresaService {
+
+//   private apiUrl = 'http://localhost:8000'; // base URL de la API en PHP
+
+//   constructor(private http: HttpClient) {}
+
+//   // Registro de empresa (usuario)
+//   register(empresaData: IEmpresa): Observable<any> {
+//     return this.http.post(`${this.apiUrl}/register`, empresaData);
+//   }
+
+//   // Login de empresa (usuario)
+//   login(credentials: { email: string; passwordIngreso: string }): Observable<any> {
+//     return this.http.post(`${this.apiUrl}/login`, credentials);
+//   }
+
+//   // Obtener empresa por ID (si lo necesitas más adelante)
+//   obtenerEmpresa(id: string): Observable<IEmpresa> {
+//     return this.http.get<IEmpresa>(`${this.apiUrl}/empresas/${id}`);
+//   }
+// }

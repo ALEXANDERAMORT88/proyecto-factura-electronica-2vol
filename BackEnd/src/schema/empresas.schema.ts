@@ -15,7 +15,7 @@ const ZodEmpresaSchema = z.object({
     .string()
     .regex(/^\d{10}$/, "El teléfono debe tener 10 dígitos"),
 
-    numeroDocuemnto: z
+    numeroDocumento: z
     .string()
     .min(5, "El número de documento debe tener al menos 5 caracteres")
     .max(15, "El número de documento no debe superar los 15 caracteres"),
