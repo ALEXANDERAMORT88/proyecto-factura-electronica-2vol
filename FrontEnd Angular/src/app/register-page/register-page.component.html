@@ -81,6 +81,11 @@
         }
     </section>
 
+    <div *ngIf="mensaje" [ngClass]="{'exito': mensajeTipo === 'exito', 'error': mensajeTipo === 'errorM'}"
+                class="mensaje">
+                {{ mensaje }}
+            </div>
+
     @if (buttonHideForm()) {
     <section class="contendor_creando_cuenta">
 
@@ -97,10 +102,7 @@
                     explora todo lo que tiene para ti.</p>
             </div>
 
-
             <!-- Formulario que nos va a permitir crear el cliente (persona o empresa que va a generar las facturas) -->
-
-
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="formulario_registro">
 
                 <div class="contenedor_info_compra">

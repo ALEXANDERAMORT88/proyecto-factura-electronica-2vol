@@ -53,7 +53,15 @@ export class RegisterPageComponent {
   registerForm!: FormGroup;
   submitted = false; // Controlamos el estado del envío del formulario.
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: EmpresaService) {
+  // Variables para ingresar el mensaje de de confirmacion o error en el ingreso de datos en el formulario.
+  mensaje: string = '';
+  mensajeTipo: 'exito' | 'errorM' | '' = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: EmpresaService
+  ) {
     this.registerForm = this.fb.group(
       {
         tipoDocumento: ['', Validators.required],
@@ -82,18 +90,18 @@ export class RegisterPageComponent {
     const confirmarEmail = group.get('confirmacionEmail')?.value;
 
     return email && confirmarEmail && email !== confirmarEmail
-    ? {emailMismatch: true}
-    : null; 
+      ? { emailMismatch: true }
+      : null;
   }
 
-  // Valildar que las contraseñas coincidad 
+  // Valildar que las contraseñas coincidad
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('passwordIngreso')?.value;
-    const confirmarPassword = group.get('confirmarPassword')?.valid
+    const confirmarPassword = group.get('confirmarPassword')?.valid;
 
     return password && confirmarPassword !== confirmarPassword
-    ? {passwordMismatch: true}
-    : null;
+      ? { passwordMismatch: true }
+      : null;
   }
 
   // Método para el envio del formulario
@@ -119,19 +127,38 @@ export class RegisterPageComponent {
     }
 
     this.authService.register(this.registerForm.value).subscribe({
-      next: (res: any)=> {
-        console.log("Registro exitoso: ", res);
-        const id = res.empresa?._id || res._id; // se realiza el cambio para que lo pueda soportar Node o PHP.
-        this.router.navigate(['/panel-gestion', id]);
+      next: (res: any) => {
+        console.log('Registro exitoso: ', res);
+        this.mensaje = '✅ Registro exitoso';
+        this.mensajeTipo = 'exito';
+
+        setTimeout(() => {
+          this.mensaje = '';
+          this.mensajeTipo = '';
+        }, 3000);
+
+        setTimeout(() => {
+          const id = res.empresa?._id || res._id; // se realiza el cambio para que lo pueda soportar Node o PHP.
+          this.router.navigate(['/panel-gestion', id]);
+
+          this.mensaje = '';
+          this.mensajeTipo = '';
+        },2000);
       },
-      error: (err)=> {
-        console.error("Error en el registro", err);
-      }
-    })
+      error: (err) => {
+        console.error('Error en el registro', err);
+      },
+    });
 
     // Guardamos de momento los datos en LocalStorage
-    localStorage.setItem('empresaData', JSON.stringify(this.registerForm.value));
+    localStorage.setItem(
+      'empresaData',
+      JSON.stringify(this.registerForm.value)
+    );
     // si todo es valido, aquí creamos la lógica de envio de datos.
-    console.log('Formulario válido, datos guardados: ', this.registerForm.value);
+    console.log(
+      'Formulario válido, datos guardados: ',
+      this.registerForm.value
+    );
   }
 }
