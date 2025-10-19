@@ -19,7 +19,7 @@ export interface IEmpresa{
 // Para Angular 
 export class EmpresaService {
 
-  private apiUrl = 'http://localhost:5100/empresas';
+  private apiUrl = 'http://localhost:8000/api/empresas';
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +29,10 @@ export class EmpresaService {
 
     obtenerEmpresa(id: string):Observable<IEmpresa> {
       return this.http.get<IEmpresa>(`${this.apiUrl}/${id}`)
+    }
+
+    login(email: string, passwordIngreso:string): Observable<any> {
+      return this.http.post(`${this.apiUrl}/login`, { email, passwordIngreso});
     }
 }
 
