@@ -7,7 +7,7 @@
 
         <section class="login">
             <!-- Formulario que permite ingresa datos para poder ingresar a panel de gestión -->
-            <form class="formulario" id="formulario_ingreso" action="">
+            <form (submit)="onLogin()" class="formulario" id="formulario_ingreso" action="">
                 <h2>Iniciar Sesión</h2>
                 <span>Aún no tienes una cuenta <a href="#" id="link_vista_registro" (click)="goRegister($event,'Registro')">Créala aquí</a></span>
 
@@ -17,17 +17,20 @@
                  <!-- Creamos una secction en nuestro HTML para poder dar más presentación a nuestro formulario y con CSS le dimos un mejor estilo  -->
                 <section class="contenedor_inputs">
                     <div class="estilo_input">
-                        <input id="usuarioFormulario" type="text" placeholder="Usuario" required>
+                        <input name="email" [(ngModel)]="email" id="usuarioFormulario" type="text" placeholder="Usuario" required>
                         <label class="input_label">Correo electrónico *</label>
                     </div>
                     <div class="estilo_input">
-                        <input id="password_ingreso" type="password" placeholder="Contraseña" required>
+                        <input name="passwordIngreso" [(ngModel)]="passwordIngreso" id="password_ingreso" type="password" placeholder="Contraseña" required>
                         <label class="input_label">Contraseña *</label>
                     </div>
                 </section>
 
                 <a href="">¿Olvidaste tu contraseña?</a>
                 <button class="boton_ingreso" type="submit">Continuar</button>
+
+                <!-- Mensaje de error -->
+                 <p *ngIf="erroMsg">{{ erroMsg }}</p>
             </form>
         </section>
 
