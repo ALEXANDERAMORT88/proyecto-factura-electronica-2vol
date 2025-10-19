@@ -1,7 +1,6 @@
 import ZodEmpresaSchema from "../schema/empresas.schema";
 import IEmpresa from "../model/empresa.models";
 import { Request, Response } from "express";
-import { success } from "zod";
 
 export const crearEmpresa = async (req: Request, res: Response) => {
   try {
