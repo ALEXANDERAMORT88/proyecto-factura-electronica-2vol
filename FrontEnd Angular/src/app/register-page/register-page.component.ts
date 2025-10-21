@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
+
 export class RegisterPageComponent {
   //Controlamos que la sección de Compras
   buttonHideBuys = signal(true);
@@ -139,7 +140,7 @@ export class RegisterPageComponent {
 
         setTimeout(() => {
           const id = res.empresa?._id || res._id; // se realiza el cambio para que lo pueda soportar Node o PHP.
-          this.router.navigate(['/panel-gestion', id]);
+          this.router.navigate(['/panel-de-gestion', id]);
 
           this.mensaje = '';
           this.mensajeTipo = '';

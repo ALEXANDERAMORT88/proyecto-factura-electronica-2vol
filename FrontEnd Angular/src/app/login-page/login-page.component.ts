@@ -27,6 +27,21 @@ export class LoginPageComponent {
   }
 
   onLogin() {
+
+    // Crear objetos con los datos del formulario 
+    const formData = {
+      email: this.email.trim(),
+      password: this.passwordIngreso.trim(),
+    };
+
+   // Validar que los datos del formulario no esten vacios
+   if (!formData.email || !formData.password) {
+    console.error('❌ Error: campos vacios detectados');
+    // console.log('Datos actuales del formulario: ', JSON.stringify(formData, null,2));
+    this.erroMsg = 'Por favor, ingresa tu correo y contraseña.';
+    return; //Detiene la ejecución del login   
+   }
+    
     this.empresaService.login(this.email, this.passwordIngreso).subscribe({
       next: (response) => {
         console.log('Login exitoso ✅', response);
